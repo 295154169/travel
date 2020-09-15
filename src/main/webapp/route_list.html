@@ -9,11 +9,13 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/getParameter.js"></script>
     <script>
+        // route_list.html?cid=5
         $(function() {
             // location
             // 1.获取url上的cid=5, 参数5  ?cid=5
-            var cid = location.search.split('=')[1];
+            var cid = getParameter("cid");
             // 2.发送异步请求分页查询
             load(cid);
         })
@@ -83,10 +85,10 @@
                         lis += li;
                     }
                     var nextNum = pb.currentPage + 1;
-                    if (nextNum > pb.totalPage) {
+                    if (nextNum > pb.totalPage){
                         nextNum = pb.totalPage;
                     }
-                    var nextPage = '<li class="threeword"><a href="javascript:load('+cid+', '+nextNum+')">下一页</a></li>';
+                    var nextPage = '<li class="threeword"><a href="javascript:load('+cid+','+nextNum+')">下一页</a></li>';
                     var lastPage = '<li class="threeword"><a href="javascript:load('+cid+','+pb.totalPage+')">末页</a></li>';
                     lis += nextPage;
                     lis += lastPage;
@@ -139,6 +141,7 @@
     </script>
 </head>
 <body>
+<!--引入头部-->
 <div id="header"></div>
 <div class="page_one">
     <div class="contant">
@@ -364,4 +367,3 @@
 </body>
 
 </html>
-
